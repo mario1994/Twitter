@@ -20,7 +20,7 @@ import { Component } from '@angular/core';
             <li class="dropdown" id="myProfil">
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile <i class="fa fa-user" aria-hidden="true"></i>  <span class="caret"></span></a>
                <ul class="dropdown-menu">
-                  <li><a href="#">Moj profil</a></li>
+                  <li><a class="router-link" routerLink="/profile" routerLinkActive="active">Moj profil</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Popisi</a></li>
                   <li><a href="#">Aktualni događaji</a></li>
@@ -29,7 +29,7 @@ import { Component } from '@angular/core';
                   <li><a href="#">Tikovni prečaci</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Postvake</a></li>
-                  <li><a href="#">Odjava</a></li>
+                  <li><a class="router-link" routerLink="/sign-up" routerLinkActive="active">Odjava</a></li>
                </ul>
             </li>
             <button type="submit" class="btn btn-primary navbar-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Tweet</button>

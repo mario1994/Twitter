@@ -154,3 +154,56 @@ body{
 .profile-text:first-of-type{
     padding-top: 0px;
 }
+
+#loginInHeader{
+    color: #1DA1F2;
+}
+
+.modal{
+    position: relative;
+}
+
+#label-password{
+    margin-left: 2px;
+}
+
+#headerProfileImage{
+    height: 300px;
+    width: 100%;
+    margin-top: -20px;
+}
+
+.profilHeader{
+    width: 100%;
+    height: 30px;
+}
+
+#smallProfileImage{
+    margin-left: 50px;
+    margin-bottom: 100px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.twitter_numbers_profil
+{
+    padding: 5px;
+    margin-bottom: -13px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#changeProfilDataButton{
+    margin-top: 8px;
+}
+
+twiter_info_profil{
+    color: #657786;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: .02em;
+    transition: color .15s 
+}

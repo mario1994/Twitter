@@ -4,8 +4,8 @@ import  Tweet  from './../../model/tweet'
 @Component({
     selector: "tweet-container", 
     template: 
-    `
-      <div class="row TweetContainer"  *ngFor="let tweet of tweets">
+    `   
+    <div class="row TweetContainer"  *ngFor="let tweet of tweets">
       <div class="col-md-1 LeftSide">
          <div class="row leftPictures">
             <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail profilSmall" >
