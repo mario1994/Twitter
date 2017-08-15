@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
     selector: "login-window", 
     template: 
     `
-    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
+    <div id="login" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" >
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="text-center" id="loginInHeader">Twitter Login <i class="fa fa-twitter" aria-hidden="true"></i></h1>

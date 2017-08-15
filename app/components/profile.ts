@@ -8,7 +8,7 @@ import TweetInput from './tweetColumn/tweetInput';
 import FollowPanel from './followColumn/followPanel';
 
 @Component({
-    selector: "home", 
+    selector: "profile", 
     template: `
         <twitter-navbar>
         </twitter-navbar>
@@ -17,7 +17,7 @@ import FollowPanel from './followColumn/followPanel';
         <div class="profilHeader">
                     <div class="col-md-3">
                     <img src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png" id="smallProfileImage">
-                    </div>
+        </div>
 
             <div class="col-md-6">
                 <div class="row">
@@ -46,14 +46,14 @@ import FollowPanel from './followColumn/followPanel';
         </div>
 
 
-        <div class="col-md-3">
+        <div class="col-md-3 rigthButtonArea">
             <button type="submit" class="btn btn-primary pull-right" id="changeProfilDataButton">Edit Profile</button>
         </div>
         </div>
 
      
         <div class="col-md-3">
-            <div class="panel panel-default text-center">
+            <div class="panel panel-default text-center  profileInfo">
                 <h2>Mario Boban</h2>
                 <p>@mBoban</p>
                 <p>Jako kršan momak, stijena od čovjeka</p>

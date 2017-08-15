@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     `
       <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
          <ul class="nav navbar-nav left-navbar">
-            <li class="active"><a href="#">Naslovnica <i class="fa fa-home fa-lx" aria-hidden="true"></i> </a></li>
+            <li class="active"><a router-link routerLink="/home" routerLinkActive="active">Naslovnica <i class="fa fa-home fa-lx" aria-hidden="true"></i> </a></li>
             <li><a href="#">Obavijesti <i class="fa fa-bell fa-lx" aria-hidden="true"></i> </a></li>
             <li><a href="#">Poruke <i class="fa fa-envelope fa-lx" aria-hidden="true"></i> </a></li>
          </ul>
