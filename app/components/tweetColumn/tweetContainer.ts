@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import  Tweet  from './../../model/tweet'
+import  Tweet  from './../../model/tweet';
+import TweetService from '../../services/TweetService';
+
 @Component({
     selector: "tweet-container", 
     template: 
     `   
-    <div class="row TweetContainer"  *ngFor="let tweet of tweets">
+    <div class="row TweetContainer"  *ngFor="let tweet of tweetService.tweets">
       <div class="col-md-1 LeftSide">
          <div class="row leftPictures">
             <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail profilSmall" >
@@ -18,7 +20,7 @@ import  Tweet  from './../../model/tweet'
                   <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">{{tweet.tweetAuthorTag}} - {{tweet.tweetTime}}min</label></a>
                   <p class="textOfTweet">{{tweet.tweetText}}</p>
                </div>
-               <div class="panel-body panel-body-tweet">
+               <div class="panel-body panel-body-tweet" *ngIf="tweet.tweetImageURL != ''">
                   <img src={{tweet.tweetImageURL}} class="img-thumbnail tweetPicture">
                </div>
                <div class="panel-footer panel-footer-tweet">
@@ -34,11 +36,11 @@ import  Tweet  from './../../model/tweet'
     `
 })
 export default class TweetContainer {
-    public tweets : Tweet[];
-    constructor(){
-        this.tweets = [
-            new Tweet("Toni Buzov","@Tbuzov",25,"Ovo je Tweet kul super","http://www.motorward.com/wp-content/images/2016/04/Vorsteiner-BMW-M4-RACE-3.jpg",3,3,3),
-            new Tweet("Mario Buzov","@Mboban",40,"Jeste spremni momci","http://cdn.finirecepti.com/wp-content/uploads/2015/10/palacinke-1.jpg",4,5,6)
-        ];
+    @Input() public Tweet: Tweet;
+  
+    private tweetService: TweetService;
+    
+    constructor(tweetService: TweetService){
+        this.tweetService = tweetService;
     }
 }

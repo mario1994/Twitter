@@ -224,3 +224,13 @@ twiter_info_profil{
     height: 100%;
 }
 
+.imageButton:hover
+{
+    cursor: pointer;
+}
+
+.moreThan140{
+    color: red;
+    font-weight: bold;
+}
+

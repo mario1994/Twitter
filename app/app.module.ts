@@ -16,6 +16,8 @@ import Profil from './components/profile';
 import LoginWindow from './components/loginWindow/loginWindow';
 import RegistrationWindow from './components/registrationWindow/registrationWindow';
 
+import TweetService from './services/TweetService';
+
 @NgModule({
   imports:      [ BrowserModule, NgbModule.forRoot(),
    RouterModule.forRoot([
@@ -27,6 +29,7 @@ import RegistrationWindow from './components/registrationWindow/registrationWind
     ])
   ],
   declarations: [ AppComponent,TwitterNavbar,NavbarHeader,NavbarCollapse,ProfilePanel,TweetContainer,TweetInput,FollowPanel,LoginWindow,Home,RegistrationWindow,Profil],
+  providers: [TweetService],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
