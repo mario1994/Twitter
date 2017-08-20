@@ -85,6 +85,6 @@ import  User  from './../../model/user'
 export default class NavbarCollapse {
     public user : User;
     constructor(){
-         this.user = new User("Pero","Boban","@Mboban","Croatia","Split");
+         this.user = new User("Pero","Boban","@Mboban","Croatia","Split","a","a","a","a");
     }
 }

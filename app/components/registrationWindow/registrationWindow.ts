@@ -30,12 +30,16 @@ import { Component } from '@angular/core';
 				                        	<input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
 				                        </div>
                                         <div class="form-group">
-				                    		<label class="sr-only" for="form-username">User name</label>
+				                    		<label class="sr-only" for="form-username">Username</label>
 				                        	<input type="text" name="form-user-name" placeholder="User name..." class="form-user-name form-control" id="form-user-name">
 				                        </div>
                                         <div class="form-group">
-				                    		<label class="sr-only" for="form-town">User name</label>
+				                    		<label class="sr-only" for="form-town">Town</label>
 				                        	<input type="text" name="form-town" placeholder="Your town..." class="form-town form-control" id="form-town">
+				                        </div>
+                                        <div class="form-group">
+				                    		<label class="sr-only" for="form-country">Country</label>
+				                        	<input type="text" name="form-country" placeholder="Your country..." class="form-country form-control" id="form-country">
 				                        </div>
                                         <div class="form-group">
                                             <label class="sr-only" for="form-data">DATE</label>

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import UserService from '../../services/UserService';
+import  User  from './../../model/user';
 
 @Component({
     selector: "login-window", 
@@ -35,7 +38,12 @@ import { Component } from '@angular/core';
     `
 })
 export default class LoginWindow{
-
-    constructor(){
+    @Input() public User: User;
+  
+    private userService: UserService;
+    
+    constructor(userService: UserService){
+        this.userService = userService;
     }
+
 }
