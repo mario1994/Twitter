@@ -3,6 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent }   from './app.component';
 import { RouterModule } from '@angular/router';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import TwitterNavbar from './components/navigationBar/twitterNavbar';
 import NavbarHeader from './components/navigationBar/navbarHeader';
@@ -20,7 +21,7 @@ import TweetService from './services/TweetService';
 import UserService from './services/UserService';
 
 @NgModule({
-  imports:      [ BrowserModule, NgbModule.forRoot(),
+  imports:      [ BrowserModule, HttpModule, JsonpModule, NgbModule.forRoot(),
    RouterModule.forRoot([
       { path: 'login', component: LoginWindow }, 
       { path: 'home', component: Home },
