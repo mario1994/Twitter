@@ -8,12 +8,13 @@ import Tweet from '../model/tweet';
 export default class TweetService {
     public tweets: Tweet[];
     private http : Http;
+
     constructor(http:Http){
       this.http = http;
-      var options = new RequestOptions({headers: new Headers({
+      /*var options = new RequestOptions({headers: new Headers({
         'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MDMzMTgxOTF9.LsiGC9dNSQ3zcTZXNLYmRGg9vcgYg6lsa_6GpjOhhxQ'
-      })});
-         this.http.get("https://tweeter-api.herokuapp.com/tweets",options)
+      })});*/
+         this.http.get("https://tweeter-api.herokuapp.com/tweets")
                  .subscribe(
                      response => { 
                          const serverItems: Array<any> = response.json();
@@ -29,6 +30,12 @@ export default class TweetService {
 
     public addTweet(tweetAuthor:string,tweetAuthorTag:string,tweetTime :number, tweetText : string, tweetImageURL : string,tweetReply : number,tweetForward : number, tweetLove : number)
     {
-        this.tweets.unshift(new Tweet(tweetAuthor,tweetAuthorTag,tweetTime,tweetText,tweetImageURL,tweetReply,tweetForward,tweetLove));
+        this.http.post("https://tweeter-api.herokuapp.com/tweets",{ tweetAuthor: tweetAuthor, tweetAuthorTag: tweetAuthorTag,
+        tweetTime:tweetTime, tweetText:tweetText, tweetImageURL:tweetImageURL, tweetReply:tweetReply, tweetForward:tweetForward, tweetLove:tweetLove} )
+        .subscribe(
+            response => {this.tweets.unshift(new Tweet(tweetAuthor,tweetAuthorTag,tweetTime,tweetText,tweetImageURL,tweetReply,tweetForward,tweetLove));},
+            error => console.log("Error when adding tweet", error)
+        );
+        
     }
 }

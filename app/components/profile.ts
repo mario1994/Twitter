@@ -69,8 +69,6 @@ import FollowPanel from './followColumn/followPanel';
         <!--THIS IS THE Follow Column-->
         <follow-panel>
         </follow-panel>
-        
-
 `})
 
 export default class Profil{};

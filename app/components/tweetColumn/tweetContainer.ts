@@ -37,7 +37,7 @@ import TweetService from '../../services/TweetService';
 })
 export default class TweetContainer {
     @Input() public Tweet: Tweet;
-  
+
     private tweetService: TweetService;
     
     constructor(tweetService: TweetService){
