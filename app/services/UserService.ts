@@ -6,7 +6,7 @@ import User from '../model/user';
 
 @Injectable()
 export default class UserService {
-    public users: User[];
+    public user: User;
     public userAlreadyExistWarning: boolean=false;
 
     private http : Http;

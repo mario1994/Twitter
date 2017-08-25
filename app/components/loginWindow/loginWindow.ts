@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterContentChecked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import AuthService from '../../services/AuthService';
@@ -47,7 +47,7 @@ import  User  from './../../model/user';
     </div>
     `
 })
-export default class LoginWindow implements OnInit{
+export default class LoginWindow implements OnInit, AfterContentChecked{
     @Input() public User: User;
     returnUrl: string;
     public emailWarning:boolean=false;
@@ -72,6 +72,8 @@ export default class LoginWindow implements OnInit{
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+    ngAfterContentChecked():void{this.invalidInput=this.authService.invalidInput;}
+
     signIn(email:HTMLInputElement, password:HTMLInputElement){
         if(email.value === "")
             this.emailWarning=true;
@@ -84,7 +86,7 @@ export default class LoginWindow implements OnInit{
 
         if(email.value && password.value)
         {
-              this.authService.logIn(email.value, password.value)
+            this.authService.logIn(email.value, password.value)
             .subscribe(
                 data => {
                     this.returnUrl = '/home';
@@ -92,7 +94,6 @@ export default class LoginWindow implements OnInit{
                 },
                 error => {
                     console.log("Greška brate")
-                    this.invalidInput=true;
                 });
         }
         else{}

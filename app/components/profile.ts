@@ -7,16 +7,22 @@ import TweetContainer from './tweetColumn/tweetContainer';
 import TweetInput from './tweetColumn/tweetInput';
 import FollowPanel from './followColumn/followPanel';
 
+import  User  from './../model/user'
+import  Tweet  from './../model/tweet'
+
+import UserService from './../services/UserService'
+import TweetService from './../services/TweetService'
+
 @Component({
     selector: "profile", 
     template: `
         <twitter-navbar>
         </twitter-navbar>
-        <img src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg" id="headerProfileImage">
+        <img src="{{userData.bigImage}}" id="headerProfileImage">
 
         <div class="profilHeader">
                     <div class="col-md-3">
-                    <img src="http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png" id="smallProfileImage">
+                    <img src="{{userData.smallImage}}" id="smallProfileImage">
         </div>
 
             <div class="col-md-6">
@@ -54,11 +60,11 @@ import FollowPanel from './followColumn/followPanel';
      
         <div class="col-md-3">
             <div class="panel panel-default text-center  profileInfo">
-                <h2>Mario Boban</h2>
-                <p>@mBoban</p>
-                <p>Jako kršan momak, stijena od čovjeka</p>
-                <p><i class="fa fa-calendar" aria-hidden="true"></i> 16.08.1994</p>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> Split</p>
+                <h2>{{userData.firstName}} {{userData.lastName}}</h2>
+                <p>@{{userData.userName}}</p>
+                <p>{{userData.aboutMe}}</p>
+                <p><i class="fa fa-calendar" aria-hidden="true"></i> {{userData.dataOfBirth}}</p>
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{userData.city}},{{userData.country}}</p>
             </div>
         </div>
 
@@ -71,4 +77,29 @@ import FollowPanel from './followColumn/followPanel';
         </follow-panel>
 `})
 
-export default class Profil{};
+export default class Profil{
+    public user : User;
+
+    public userData:User;
+    public tweetData:Tweet[]=[];
+
+    public userService:UserService;
+    private tweetService: TweetService;
+
+    constructor(userService:UserService,tweetService: TweetService){
+        this.userService=userService;
+        this.tweetService=tweetService;
+
+        this.userData=userService.user;
+        for(let i = 0;i< this.tweetService.tweets.length;i++)
+        {
+            if(this.tweetService.tweets[i].tweetAuthor === "Toni Buzov")
+            this.tweetData.push(this.tweetService.tweets[i]);
+            
+        } 
+        console.log(this.tweetData);
+    }
+
+    //http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg
+    //http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png
+};

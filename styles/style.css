@@ -246,7 +246,15 @@ twiter_info_profil{
 }
 
 .registration{
-    color: green;
+    color: #1DA1F2;
     text-align: center;
+}
 
+#imageProfileHome{
+    height: 100px;
+    width: 120px;
+}
+
+#profileHome{
+    margin-top: 10px;
 }

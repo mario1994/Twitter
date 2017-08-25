@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import  User  from './../../model/user'
+import UserService from './../../services/UserService'
 
 @Component({
     selector: "profile-column", 
@@ -9,19 +10,19 @@ import  User  from './../../model/user'
       <div class="col-md-3">
    <div class="panel panel-default text-center">
       <div class="panel-heading">
-         <h1>Profile</h1>
+         <h1 id="profileHome">Profile</h1>
          <div class="row">
             <div class="col-xs-6">
                <div class="big-box">
-                  <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail" >
+                  <img src="{{userData.smallImage}}" class="img-thumbnail" id="imageProfileHome" > 
                </div>
             </div>
             <div class="col-xs-6">
                <div class="row">
-                  <div class="profile-text"> Name:{{user.firstName}} {{user.lastName}}</div>
-                  <div class="profile-text"> {{user.twitterTag}}</div>
-                  <div class="profile-text"> Country:{{user.country}}</div>
-                  <div class="profile-text"> City:{{user.city}}</div>
+                  <div class="profile-text"> Name:{{userData.firstName}} {{userData.lastName}}</div>
+                  <div class="profile-text"> @{{userData.userName}}</div>
+                  <div class="profile-text"> Country:{{userData.country}}</div>
+                  <div class="profile-text"> City:{{userData.city}}</div>
                </div>
             </div>
          </div>
@@ -84,7 +85,12 @@ import  User  from './../../model/user'
 })
 export default class NavbarCollapse {
     public user : User;
-    constructor(){
-         this.user = new User("Pero","Boban","@Mboban","Croatia","Split","a","a","a","a","a","a");
+    public userData:User;
+    public userService:UserService;
+
+    constructor(userService:UserService){
+        this.userService=userService;
+        this.userData=userService.user;        
     }
+    //https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg
 }
