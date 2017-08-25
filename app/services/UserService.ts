@@ -15,10 +15,11 @@ export default class UserService {
       this.http = http;}
 
     public addUser(firstName: string,lastName: string,userName: string,city: string,country: string,dateOfBirth : string,email: string,
-    aboutMe: string, password: string)
+    aboutMe: string, smallIMage:string,bigImage:string,password: string)
     {
         this.http.post("https://tweeter-api.herokuapp.com/signup",{ firstName: firstName, lastName: lastName,
-        userName:userName,  country:country, city:city, dateOfBirth:dateOfBirth, email:email, aboutSelf:aboutMe, password:password} )
+        userName:userName,  country:country, city:city, dateOfBirth:dateOfBirth, email:email, aboutSelf:aboutMe,
+        largeUserProfilePicture:bigImage, smallUserProfilePicture:smallIMage, password:password} )
         .subscribe(
             response => {console.log("Succesfully added user"),
             this.userAlreadyExistWarning=false;

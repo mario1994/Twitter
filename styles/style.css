@@ -238,3 +238,15 @@ twiter_info_profil{
     color: red;
 }
 
+.warningInvalid{
+    color: red;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.registration{
+    color: green;
+    text-align: center;
+
+}

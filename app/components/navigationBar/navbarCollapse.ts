@@ -29,7 +29,7 @@ import { Component } from '@angular/core';
                   <li><a href="#">Tikovni prečaci</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="#">Postvake</a></li>
-                  <li><a class="router-link" routerLink="/sign-up" routerLinkActive="active">Odjava</a></li>
+                  <li><a class="router-link" routerLink="/login" routerLinkActive="active">Odjava</a></li>
                </ul>
             </li>
             <button type="submit" class="btn btn-primary navbar-btn"><i class="fa fa-pencil" aria-hidden="true"></i> Tweet</button>

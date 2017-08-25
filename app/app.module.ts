@@ -19,19 +19,21 @@ import RegistrationWindow from './components/registrationWindow/registrationWind
 
 import TweetService from './services/TweetService';
 import UserService from './services/UserService';
+import AuthGuard from './services/AuthGuardService';
+import AuthService from './services/AuthService';
 
 @NgModule({
   imports:      [ BrowserModule, HttpModule, JsonpModule, NgbModule.forRoot(),
    RouterModule.forRoot([
       { path: 'login', component: LoginWindow }, 
-      { path: 'home', component: Home },
-      { path: 'profile', component: Profil },
+      { path: 'home', canActivate: [AuthGuard], component: Home },
+      { path: 'profile', canActivate: [AuthGuard],component: Profil },
       { path: 'registration', component: RegistrationWindow },
       { path: '**', component: LoginWindow }
     ])
   ],
   declarations: [ AppComponent,TwitterNavbar,NavbarHeader,NavbarCollapse,ProfilePanel,TweetContainer,TweetInput,FollowPanel,LoginWindow,Home,RegistrationWindow,Profil],
-  providers: [TweetService,UserService],
+  providers: [TweetService,UserService,AuthGuard,AuthService],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
