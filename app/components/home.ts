@@ -7,6 +7,10 @@ import TweetContainer from './tweetColumn/tweetContainer';
 import TweetInput from './tweetColumn/tweetInput';
 import FollowPanel from './followColumn/followPanel';
 
+
+import  Tweet  from './../model/tweet'
+import TweetService from './../services/TweetService'
+
 @Component({
     selector: "home", 
     template: `
@@ -27,4 +31,13 @@ import FollowPanel from './followColumn/followPanel';
 
 `})
 
-export default class Home{};
+export default class Home{
+    public tweetData:Tweet[];
+    private tweetService: TweetService;
+
+    constructor(tweetService: TweetService){
+        this.tweetService=tweetService;
+        this.tweetService.filterTweet=false;
+    }
+
+};

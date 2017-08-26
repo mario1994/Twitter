@@ -52,19 +52,32 @@ import TweetService from './../services/TweetService'
         </div>
 
 
-        <div class="col-md-3 rigthButtonArea">
-            <button type="submit" class="btn btn-primary pull-right" id="changeProfilDataButton">Edit Profile</button>
+        <div class="col-md-3 rigthButtonArea" *ngIf="!changeData">
+            <button type="button" (click)="changeProfileData()" class="btn btn-primary pull-right" id="changeProfilDataButton">Edit profile</button>
+        </div>
+        <div class="col-md-3 rigthButtonArea" *ngIf="changeData">
+            <button type="button" (click)="cancelDataChange()" class="btn btn-primary pull-right" id="changeProfilDataButton">Cancel</button>
         </div>
         </div>
 
      
         <div class="col-md-3">
-            <div class="panel panel-default text-center  profileInfo">
+            <div *ngIf="!changeData" class="panel panel-default text-center  profileInfo">
                 <h2>{{userData.firstName}} {{userData.lastName}}</h2>
                 <p>@{{userData.userName}}</p>
                 <p>{{userData.aboutMe}}</p>
                 <p><i class="fa fa-calendar" aria-hidden="true"></i> {{userData.dataOfBirth}}</p>
                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{userData.city}},{{userData.country}}</p>
+            </div>
+            <div *ngIf="changeData" class="panel panel-default text-center  profileInfo">
+               <input type="text" [value]="firstName" (input)="firstName=$event.target.value"  name="form-first-name" placeholder={{userData.firstName}} value={{userData.firstName}} class="form-first-name form-control profileForm" id="form-first-name">
+                <input type="text" [value]="lastName" (input)="lastName=$event.target.value"  name="form-last-name" placeholder={{userData.lastName}}  value={{userData.lastName}} class="form-last-name form-control profileForm" id="form-last-name">
+                <input type="text" [value]="userName" (input)="userName=$event.target.value"  name="form-user-name" placeholder={{userData.userName}} value={{userData.userName}} class="form-user-name form-control profileForm" id="form-user-name">
+                <input type="text" [value]="city" (input)="city=$event.target.value"  name="form-city" placeholder={{userData.city}} value={{userData.city}} class="form-city form-control profileForm" id="form-city profileForm">
+                <input type="text" [value]="country" (input)="country=$event.target.value"  name="form-country" placeholder={{userData.country}}  value={{userData.country}}  class="form-country form-control profileForm" id="form-country">
+                <input class="form-control profileForm" (input)="dateOfBirth=$event.target.value" [value]="dateOfBirth"  name="form-date" type="date" placeholder={{userData.dataOfBirth}} value={{userData.dataOfBirth}} id="date-input">
+                <textarea [value]="aboutMe" (input)="aboutMe=$event.target.value" name="form-about-yourself" placeholder={{userData.aboutMe}}  value={{userData.aboutMe}}  class="form-about-yourself form-control profileForm" id="form-about-yourself"></textarea>
+                <button type="button" (click)="saveProfileData()" class="btn btn-primary pull-centar" id="changeProfilDataButton">Save profile data</button>
             </div>
         </div>
 
@@ -79,9 +92,17 @@ import TweetService from './../services/TweetService'
 
 export default class Profil{
     public user : User;
+    public changeData : boolean = false;
+    public firstName :string="";
+    public lastName :string="";
+    public userName :string="";
+    public dateOfBirth :string="";
+    public city :string="";
+    public coutry :string="";
+    public aboutMe: string ="";
 
     public userData:User;
-    public tweetData:Tweet[]=[];
+    public tweetData:Tweet[];
 
     public userService:UserService;
     private tweetService: TweetService;
@@ -90,14 +111,22 @@ export default class Profil{
         this.userService=userService;
         this.tweetService=tweetService;
 
-        this.userData=userService.user;
-        for(let i = 0;i< this.tweetService.tweets.length;i++)
-        {
-            if(this.tweetService.tweets[i].tweetAuthor === "Toni Buzov")
-            this.tweetData.push(this.tweetService.tweets[i]);
-            
-        } 
-        console.log(this.tweetData);
+        this.userData=this.userService.user;
+
+        this.tweetService.filterTweet=true;
+    }
+
+    changeProfileData(){
+        this.changeData=true;
+    }
+
+    cancelDataChange(){
+        this.changeData=false;
+    }
+
+    saveProfileData(){
+          this.userService.changeUserData(this.firstName,this.lastName,this.userName,this.city,this.coutry,this.dateOfBirth,this.aboutMe)
+          this.changeData=false;
     }
 
     //http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg

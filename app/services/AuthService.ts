@@ -38,7 +38,7 @@ export default class AuthService {
     }
 
     public setCurrentlyUser(){
-        this.userService.user=new User(this.currentlyUser["firstName"],this.currentlyUser["lastName"],this.currentlyUser["userName"],
+        this.userService.user=new User(this.currentlyUser["id"],this.currentlyUser["firstName"],this.currentlyUser["lastName"],this.currentlyUser["userName"],
         this.currentlyUser["country"],this.currentlyUser["city"],this.currentlyUser["dateOfBirth"],this.currentlyUser["email"],
         this.currentlyUser["aboutSelf"],this.currentlyUser["smallUserProfilePicture"],this.currentlyUser["largeUserProfilePicture"],
         this.currentlyUser["password_digest"])

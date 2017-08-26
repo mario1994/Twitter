@@ -8,6 +8,7 @@ import Tweet from '../model/tweet';
 export default class TweetService {
     public tweets: Tweet[];
     private http : Http;
+    public filterTweet: boolean = false;
 
     constructor(http:Http){
       this.http = http;

@@ -1,4 +1,5 @@
 export default class User {
+  public id:number;
   public firstName: string;
   public lastName: string;
   public userName :string;
@@ -11,8 +12,9 @@ export default class User {
   public bigImage:string;
   public password: string;
   
-  constructor(firstName: string,lastName: string,userName: string,country: string,city: string,dataOfBirth : string,email: string,
+  constructor(id:number,firstName: string,lastName: string,userName: string,country: string,city: string,dataOfBirth : string,email: string,
   aboutMe: string, smallImage:string, bigImage:string, password: string){
+    this.id=id;
     this.firstName  = firstName;
     this.lastName = lastName;
     this.userName  = userName;

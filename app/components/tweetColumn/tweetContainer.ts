@@ -1,13 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterContentChecked } from '@angular/core';
 
 import  Tweet  from './../../model/tweet';
 import TweetService from '../../services/TweetService';
+
+import  User  from './../../model/user'
+import UserService from './../../services/UserService'
+
 
 @Component({
     selector: "tweet-container", 
     template: 
     `   
-    <div class="row TweetContainer"  *ngFor="let tweet of tweetService.tweets">
+    <div class="row TweetContainer"  *ngFor="let tweet of tweetData">
       <div class="col-md-1 LeftSide">
          <div class="row leftPictures">
             <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail profilSmall" >
@@ -35,12 +39,36 @@ import TweetService from '../../services/TweetService';
    </div>
     `
 })
-export default class TweetContainer {
-    @Input() public Tweet: Tweet;
+export default class TweetContainer implements AfterContentChecked {
+    public user : User;
 
+    public userData:User;
+    public tweetData:Tweet[]=[];
+
+    public userService:UserService;
     private tweetService: TweetService;
     
-    constructor(tweetService: TweetService){
-        this.tweetService = tweetService;
+    constructor(tweetService: TweetService,userService: UserService){
+        this.userService=userService;
+        this.tweetService=tweetService;
+
+        this.userData=userService.user;      
     }
+
+    ngAfterContentChecked()
+      {
+        if(this.tweetService.filterTweet)
+        {
+            for(let i = 0;i< this.tweetService.tweets.length;i++)
+            {
+                if(this.tweetService.tweets[i].tweetAuthor === "Toni Buzov")
+                this.tweetData.push(this.tweetService.tweets[i]);
+                
+            }
+        }
+        else   
+         this.tweetData=this.tweetService.tweets;
+        
+        };
+    
 }
