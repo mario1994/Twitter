@@ -29,7 +29,7 @@ import TweetService from './../services/TweetService'
                 <div class="row">
                 <div class="twitter_numbers_profil">
                     <strong>Tweets </strong>
-                    <p class="twiter_info_profil"><strong>2</strong></p>
+                    <p class="twiter_info_profil"><strong>{{numberOfTweets}}</strong></p>
                 </div>
                 <div class="twitter_numbers_profil"> 
                     <strong>Following </strong>
@@ -82,8 +82,32 @@ import TweetService from './../services/TweetService'
         </div>
 
         <div class="col-md-6">
-            <tweet-container>
-            </tweet-container>
+            <div class="row TweetContainer"  *ngFor="let tweet of tweetData">
+      <div class="col-md-1 LeftSide">
+         <div class="row leftPictures">
+            <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail profilSmall" >
+         </div>
+      </div>
+      <div class="col-md-11 rightSide">
+         <div class="row">
+            <div class="panel panel-default text-left rSide">
+               <div class="panel-heading" id="panel-heading-tweet">
+                  <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">{{tweet.tweetAuthorTag}} - {{tweet.tweetTime}}min</label></a>
+                  <p class="textOfTweet">{{tweet.tweetText}}</p>
+               </div>
+               <div class="panel-body panel-body-tweet" *ngIf="tweet.tweetImageURL != ''">
+                  <img src={{tweet.tweetImageURL}} class="img-thumbnail tweetPicture">
+               </div>
+               <div class="panel-footer panel-footer-tweet">
+                  <i class="fa fa-reply fa-2x tweetIcon" aria-hidden="true"></i> <label class="numberIcone">{{tweet.tweetReply}}</label>
+                  <i class="fa fa-level-up fa-2x tweetIcon" aria-hidden="true"></i> <label class="numberIcone">{{tweet.tweetForward}}</label>
+                  <i class="fa fa-heart fa-2x tweetIcon heart" aria-hidden="true"></i> <label class="numberIcone">{{tweet.tweetLove}}</label>
+                  <i class="fa fa-ellipsis-h fa-2x tweetIcon" aria-hidden="true"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
         </div>
         <!--THIS IS THE Follow Column-->
         <follow-panel>
@@ -100,9 +124,11 @@ export default class Profil{
     public city :string="";
     public coutry :string="";
     public aboutMe: string ="";
+    public numberOfTweets :number = 0;
 
     public userData:User;
-    public tweetData:Tweet[];
+    public tweetData:Tweet[]=[];
+    public tweetAuthor:string = "";
 
     public userService:UserService;
     private tweetService: TweetService;
@@ -114,6 +140,15 @@ export default class Profil{
         this.userData=this.userService.user;
 
         this.tweetService.filterTweet=true;
+        this.tweetService.homePage=false;
+        this.tweetAuthor = this.userData.firstName + " " + this.userData.lastName;
+        for(let i = 0;i< this.tweetService.tweets.length;i++)
+            {
+                if(this.tweetService.tweets[i].tweetAuthor === this.tweetAuthor)
+                this.tweetData.push(this.tweetService.tweets[i]);
+                
+            }
+        this.numberOfTweets =  this.numberOfTweets + this.tweetData.length;
     }
 
     changeProfileData(){

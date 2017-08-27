@@ -38,6 +38,7 @@ export default class Home{
     constructor(tweetService: TweetService){
         this.tweetService=tweetService;
         this.tweetService.filterTweet=false;
+        this.tweetService.homePage=true;
     }
 
 };

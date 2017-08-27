@@ -9,6 +9,7 @@ export default class TweetService {
     public tweets: Tweet[];
     private http : Http;
     public filterTweet: boolean = false;
+    public homePage:boolean = true;
 
     constructor(http:Http){
       this.http = http;

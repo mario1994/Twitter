@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 
+import TweetService from './../../services/TweetService'
+
 @Component({
     selector: "navbar-collapse", 
     template: 
     `
       <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
          <ul class="nav navbar-nav left-navbar">
-            <li class="active"><a router-link routerLink="/home" routerLinkActive="active">Naslovnica <i class="fa fa-home fa-lx" aria-hidden="true"></i> </a></li>
+            <li [ngClass]="{'active': homePage}"><a router-link routerLink="/home" routerLinkActive="active">Naslovnica <i class="fa fa-home fa-lx" aria-hidden="true"></i> </a></li>
             <li><a href="#">Obavijesti <i class="fa fa-bell fa-lx" aria-hidden="true"></i> </a></li>
             <li><a href="#">Poruke <i class="fa fa-envelope fa-lx" aria-hidden="true"></i> </a></li>
          </ul>
@@ -38,7 +40,11 @@ import { Component } from '@angular/core';
     `
 })
 export default class NavbarCollapse {
+    public homePage:boolean;
+    public tweetService:TweetService;
 
-    constructor(){
+    constructor(tweetService:TweetService){
+        this.tweetService=tweetService;
+        this.homePage=this.tweetService.homePage; 
     }
 }
