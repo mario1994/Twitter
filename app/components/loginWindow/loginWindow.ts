@@ -108,5 +108,5 @@ export default class LoginWindow implements OnInit, AfterContentChecked, OnDestr
         if(input.placeholder === "Password")
             this.passwordWarning=false;
     }
- 
+
 }

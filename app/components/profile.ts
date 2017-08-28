@@ -92,7 +92,7 @@ import TweetService from './../services/TweetService'
          <div class="row">
             <div class="panel panel-default text-left rSide">
                <div class="panel-heading" id="panel-heading-tweet">
-                  <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">@{{tweet.tweetAuthorTag}} - {{tweet.tweetTime}}min</label></a>
+                  <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">@{{tweet.tweetAuthorTag}} - {{tweet.tweetTime | timePipe}}</label></a>
                   <p class="textOfTweet">{{tweet.tweetText}}</p>
                </div>
                <div class="panel-body panel-body-tweet" *ngIf="tweet.tweetImageURL != ''">

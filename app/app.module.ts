@@ -22,6 +22,8 @@ import UserService from './services/UserService';
 import AuthGuard from './services/AuthGuardService';
 import AuthService from './services/AuthService';
 
+import timePipe from './pipes/timePipe';
+
 @NgModule({
   imports:      [ BrowserModule, HttpModule, JsonpModule, NgbModule.forRoot(),
    RouterModule.forRoot([
@@ -32,7 +34,7 @@ import AuthService from './services/AuthService';
       { path: '**', component: LoginWindow }
     ])
   ],
-  declarations: [ AppComponent,TwitterNavbar,NavbarHeader,NavbarCollapse,ProfilePanel,TweetContainer,TweetInput,FollowPanel,LoginWindow,Home,RegistrationWindow,Profil],
+  declarations: [ AppComponent,TwitterNavbar,NavbarHeader,NavbarCollapse,ProfilePanel,TweetContainer,TweetInput,FollowPanel,LoginWindow,Home,RegistrationWindow,Profil,timePipe],
   providers: [TweetService,UserService,AuthGuard,AuthService],
   bootstrap:    [ AppComponent ]
 })
