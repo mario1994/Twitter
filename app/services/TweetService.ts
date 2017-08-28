@@ -20,7 +20,7 @@ export default class TweetService {
                  .subscribe(
                      response => { 
                          const serverItems: Array<any> = response.json();
-                         this.tweets = serverItems.map(it => new Tweet(it.tweetAuthor,it.tweetAuthorTag,it.tweetTime,it.tweetText,it.tweetImageURL,it.tweetReply,it.tweetForward,it.tweetLove));
+                         this.tweets = serverItems.map(it => new Tweet(it.tweetAuthor,it.tweetAuthorTag,it.smallAuthorProfilePicture ,it.tweetTime,it.tweetText,it.tweetImageURL,it.tweetReply,it.tweetForward,it.tweetLove));
                      },
                      error => console.log("Error when getting tweets")
                  ); 
@@ -30,14 +30,15 @@ export default class TweetService {
             ];*/
     }
 
-    public addTweet(tweetAuthor:string,tweetAuthorTag:string,tweetTime :number, tweetText : string, tweetImageURL : string,tweetReply : number,tweetForward : number, tweetLove : number)
+    public addTweet(tweetAuthor:string,tweetAuthorTag:string, smallAuthorImage:string, tweetTime :number, tweetText : string, tweetImageURL : string,tweetReply : number,tweetForward : number, tweetLove : number)
     {
-        this.http.post("https://tweeter-api.herokuapp.com/tweets",{ tweetAuthor: tweetAuthor, tweetAuthorTag: tweetAuthorTag,
+        this.http.post("https://tweeter-api.herokuapp.com/tweets",{ tweetAuthor: tweetAuthor, tweetAuthorTag: tweetAuthorTag, smallAuthorProfilePicture : smallAuthorImage,
         tweetTime:tweetTime, tweetText:tweetText, tweetImageURL:tweetImageURL, tweetReply:tweetReply, tweetForward:tweetForward, tweetLove:tweetLove} )
         .subscribe(
-            response => {this.tweets.unshift(new Tweet(tweetAuthor,tweetAuthorTag,tweetTime,tweetText,tweetImageURL,tweetReply,tweetForward,tweetLove));},
+            response => {this.tweets.unshift(new Tweet(tweetAuthor,tweetAuthorTag,smallAuthorImage,tweetTime,tweetText,tweetImageURL,tweetReply,tweetForward,tweetLove));},
             error => console.log("Error when adding tweet", error)
         );
         
     }
+
 }

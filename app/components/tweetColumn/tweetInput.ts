@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter} from '@angular/core';
 import  TweetContainer  from './tweetContainer';
 
 import TweetService from '../../services/TweetService';
+import UserService from '../../services/UserService';
 
 @Component({
     selector: "tweet-input", 
@@ -37,23 +38,30 @@ import TweetService from '../../services/TweetService';
 })
 export default class TweetInput {
     private tweetService: TweetService;
+    private userService: UserService;
     private imageUrl: string;
     private openImageForm :boolean;
     private numberOfLetter : number;
 
-    constructor(tweetService: TweetService){
+    constructor(tweetService: TweetService,userService: UserService){
         this.tweetService = tweetService;
+        this.userService=userService;
         this.numberOfLetter= 140;
         this.imageUrl='';
     }
 
     private addTweet(input: HTMLInputElement)
     {
+        var tweetAuthor=this.userService.user.firstName + " "+ this.userService.user.lastName;
+        var currentTime = new Date();  
+        var timeInSec:number= currentTime.getTime();
+        timeInSec=Math.floor(timeInSec / 1000)
+         console.log(timeInSec);
         const value = input.value.trim();
         if(!value) { return; }
         input.value = "";
       
-        this.tweetService.addTweet("Toni Buzov","@Tbuzov",25,value.slice(0,140),this.imageUrl,0,0,0)
+        this.tweetService.addTweet(tweetAuthor,this.userService.user.userName,this.userService.user.smallImage,timeInSec,value.slice(0,140),this.imageUrl,0,0,0)
         this.imageUrl="";
         this.openImageForm=false;
         this.numberOfLetter= 140;

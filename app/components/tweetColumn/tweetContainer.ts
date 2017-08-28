@@ -14,14 +14,14 @@ import UserService from './../../services/UserService'
     <div class="row TweetContainer"  *ngFor="let tweet of tweetService.tweets">
       <div class="col-md-1 LeftSide">
          <div class="row leftPictures">
-            <img src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" class="img-thumbnail profilSmall" >
+            <img src="{{tweet.smallAuthorImage}}" class="img-thumbnail profileSmall" >
          </div>
       </div>
       <div class="col-md-11 rightSide">
          <div class="row">
             <div class="panel panel-default text-left rSide">
                <div class="panel-heading" id="panel-heading-tweet">
-                  <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">{{tweet.tweetAuthorTag}} - {{tweet.tweetTime}}min</label></a>
+                  <a class="authorTweet"><strong>{{tweet.tweetAuthor}}</strong> <label class="timeTweet">@{{tweet.tweetAuthorTag}} - {{tweet.tweetTime}}</label></a>
                   <p class="textOfTweet">{{tweet.tweetText}}</p>
                </div>
                <div class="panel-body panel-body-tweet" *ngIf="tweet.tweetImageURL != ''">
@@ -52,5 +52,7 @@ export default class TweetContainer{
         this.tweetService=tweetService;
 
         this.userData=userService.user;
-    }            
+    } 
+
+    //https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg           
 }

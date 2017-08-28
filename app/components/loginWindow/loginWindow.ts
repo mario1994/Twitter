@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, Input, OnInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import AuthService from '../../services/AuthService';
@@ -47,7 +47,7 @@ import  User  from './../../model/user';
     </div>
     `
 })
-export default class LoginWindow implements OnInit, AfterContentChecked{
+export default class LoginWindow implements OnInit, AfterContentChecked, OnDestroy{
     @Input() public User: User;
     returnUrl: string;
     public emailWarning:boolean=false;
@@ -73,6 +73,8 @@ export default class LoginWindow implements OnInit, AfterContentChecked{
     }
 
     ngAfterContentChecked():void{this.invalidInput=this.authService.invalidInput;}
+
+    ngOnDestroy(){this.authService.invalidInput=false};
 
     signIn(email:HTMLInputElement, password:HTMLInputElement){
         if(email.value === "")
@@ -106,5 +108,5 @@ export default class LoginWindow implements OnInit, AfterContentChecked{
         if(input.placeholder === "Password")
             this.passwordWarning=false;
     }
-     
+ 
 }
